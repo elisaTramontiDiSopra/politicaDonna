@@ -1,0 +1,69 @@
+{
+  "admin": {
+    "welcome": "Welcome",
+    "manage": "Manage the tasks",
+    "newTask": "Add a new task",
+    "manageSchedule": "Manage the weekly schedule",
+    "message": "Questa è.",
+    "yourSettings": "Your settings",
+    "wannaChangePassword": "Want to change password?",
+    "passwordMessage": "This is your admin password. It will let you swich from the admin to the user profile and viceversa",
+    "passwordPlaceholder": "Write your new password",
+    "passwordUpdateMsg": "Your password had been updated. Congrats!",
+    "selectLanguage": "Select language",
+    "change": "Change",
+    "italian": "Italiano",
+    "english": "Inglese",
+    "lineChartText": "Overview",
+    "legendAssigned": "Assigned tasks",
+    "legendDone": "Done tasks"
+
+  },
+  "calendar": {
+    "modalAdminTitle": "Type your admin password",
+    "passwordPlaceholder": "Type your admin password"
+  },
+  "new": {
+    "newTask": "Create a new task",
+    "editTask": "Edit this task",
+    "nameTitle": "Task name",
+    "imgTitle": "Upload task image",
+    "addSubtask": "Add subtask",
+    "noTasks": "You don't have any task",
+    "search": "Search"
+  },
+  "edit": {
+    "monSchedule": "Monday's schedule",
+    "tueSchedule": "Tuesday's schedule",
+    "wedSchedule": "Wednesday's schedule",
+    "thuSchedule": "Thursday's schedule",
+    "friSchedule": "Friday's schedule",
+    "satSchedule": "Satuday's schedule",
+    "sunSchedule": "Sunday's schedule",
+    "allTasks": "All your saved tasks"
+  },
+  "general": {
+    "mon": "Mon",
+    "tue": "Tue",
+    "wed": "Wed",
+    "thu": "Thu",
+    "fri": "Fri",
+    "sat": "Sat",
+    "sun": "Sun",
+    "save": "Save",
+    "saveAll": "Save all",
+    "points": "Points"
+  },
+  "footer": {
+    "calendar": "Calendar",
+    "game": "Game",
+    "admin": "Admin Panel",
+    "alertWrongPassword": "Wrong password. Ask the real admin for it!"
+  },
+  "screens": {
+    "victory": "You win!",
+    "failure": "Try harder yound wizard!"
+  }
+
+
+}

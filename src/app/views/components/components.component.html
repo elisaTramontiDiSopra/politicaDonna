@@ -1,0 +1,102 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 mt-5">
+      <ul>
+        <li>
+          <button class="btn btn-primary" (click)="openModal()">Primary button (open modal)</button>
+        </li>
+        <li>
+          <button class="btn btn-secondary" (click)="showToaster()">Secondary button (open toaster)</button>
+        </li>
+        <li>
+          <button class="btn btn-tertiary">Tertiary button</button>
+        </li>
+        <li>
+          <button class="btn btn-success">Success button</button>
+        </li>
+        <li>
+          <button class="btn btn-warning">Warning button</button>
+        </li>
+        <li>
+          <button class="btn btn-danger">Danger button</button>
+        </li>
+        <li>
+          Font awesome 5 angular component
+          <fa-icon [icon]="['fas', 'chevron-left']" size="2x"></fa-icon>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 mt-5">
+      <h2>Moment</h2>
+      <ul>
+        <li>
+          <label>
+            <strong>Date: </strong>{{date}}</label>
+        </li>
+        <li>
+          <label>
+            <strong>amTimeAgo: </strong>{{date | amTimeAgo}}</label>
+        </li>
+        <li>
+          <label>
+            <strong>amDateFormat: </strong>{{date | amDateFormat : 'DD/MM/YYYY HH:MM'}}</label>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row my-4">
+    <div class="card-deck">
+      <div class="card">
+        <img class="card-img-top" src="http://lorempixel.com/g/200/200/">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a
+            little bit longer.</p>
+          <p class="card-text">
+            <small class="text-muted">Last updated 3 mins ago</small>
+          </p>
+        </div>
+      </div>
+      <div class="card">
+        <img class="card-img-top" src="http://lorempixel.com/g/200/200/">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+          <p class="card-text">
+            <small class="text-muted">Last updated 3 mins ago</small>
+          </p>
+        </div>
+      </div>
+      <div class="card">
+        <img class="card-img-top" src="http://lorempixel.com/g/200/200/">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even
+            longer content than the first to show that equal height action.</p>
+          <p class="card-text">
+            <small class="text-muted">Last updated 3 mins ago</small>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SAMPLE MODAL  -->
+<div bsModal #myModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Large modal</h4>
+        <button type="button" class="close pull-right" (click)="closeModal()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+    </div>
+  </div>
+</div>

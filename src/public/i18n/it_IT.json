@@ -1,0 +1,31 @@
+{
+  "admin": {
+    "welcome": "Benvenuto",
+    "message": "Questa è la pagina di amministrazione, qui potrai settare le tue preferenze. Fai particolare attenzione alla password che ti permetterà di modificare il profilo utente da amministratore a utilizzatore.",
+    "changePassword": "Cambia password",
+    "passwordMessage": "Questa password ti permette di passare dall'utente amministratore all'utilizzatore",
+    "selectLanguage": "Seleziona lingua",
+    "change": "Cambia",
+    "italian": "Italiano",
+    "english": "Inglese"
+
+  },
+  "general": {
+    "mon": "Lun",
+    "tue": "Mar",
+    "wed": "Mer",
+    "thu": "Gio",
+    "fri": "Ven",
+    "sat": "Sab",
+    "sun": "Dom",
+    "save": "Salva",
+    "saveAll": "Salva tutto"
+  },
+  "footer": {
+    "calendar": "Calendario",
+    "game": "Il gioco",
+    "admin": "Panello Admin",
+    "alertWrongPassword": "Non è la password giusta. Chiedi al vero Admin!"
+  }
+
+}

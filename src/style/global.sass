@@ -1,0 +1,62 @@
+@import ~style/variables
+@import ~style/bootstrap
+@import ~ladda/dist/ladda.min.css
+// @ import '~ngx-toastr/toastr.css'
+
+html
+  font-size: 16px !important
+  height: 100%
+  @include media-breakpoint-down(sm)
+    font-size: 14px !important
+
+  @include media-breakpoint-down(xs)
+    font-size: 12px !important
+  body
+    background-color: $bg
+    color: $white
+    height: 100%
+    .container, .container-no-gutters
+      height: 100%
+
+button
+  border: none
+.pointer
+  cursor: pointer
+
+
+//rotations
+.rotate90
+  transform: rotate(90deg)
+.rotate270
+  transform: rotate(270deg)
+
+//alignment
+.page-centered
+  width: 95%
+  margin: auto
+
+//overflow
+.overflow-scroll
+  overflow: scroll
+  max-height: 500px
+::-webkit-scrollbar
+  display: none
+
+//section
+.section
+  color: $white
+
+//typography
+h2
+  color: $white
+  letter-spacing: 2px
+  text-transform: uppercase
+
+h3
+  border-bottom: 1px solid $light-yellow
+  letter-spacing: 2px
+  text-transform: uppercase
+  color: #fff
+h5
+  //font-weight: bold
+  color: #fff

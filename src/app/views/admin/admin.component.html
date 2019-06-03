@@ -1,0 +1,148 @@
+<div class="h-100 row no-gutters">
+  <div class="row page-centered">
+    <div class="container">
+      <div class="row">
+        <div class="col-8 border-right px-5">
+          <h3 class="my-4">{{ "admin.manage" | translate }}</h3>
+
+          <div class="row no-gutters schedule-buttons mb-5">
+            <div class="col mr-3 d-flex align-items-center flex-column rounded btn-dark justify-content-center">
+              <span class="mb-2">{{ "admin.newTask" | translate }}</span>
+              <button class="btn btn-primary rounded-circle mx-1 mb-3" >
+                <fa-icon [icon]="['fas', 'plus']"></fa-icon>
+              </button>
+            </div>
+            <div class="col ml-3 d-flex align-items-center flex-column rounded btn-dark justify-content-center" routerLink="/admin-edit">
+                <span class="mb-2">{{ "admin.manageSchedule" | translate }}</span>
+                <button class="btn btn-primary rounded-circle mx-1 mb-3" >
+                  <fa-icon [icon]="['fas', 'plus']"></fa-icon>
+                </button>
+              </div>
+          </div>
+
+
+
+
+
+
+
+
+          <div>
+            <h5 class="my-4">{{ "admin.lineChartText" | translate }}</h5>
+            <lines-complete-chart
+              [data]="lineChartData"
+              [options]="linesConfig"
+            ></lines-complete-chart>
+            <div
+              class="legend row justify-content-center align-items-center mt-5"
+            >
+              <div class="dashed mx-3"></div>
+              <span>{{ "admin.legendAssigned" | translate }}</span>
+              <div class="done mx-3"></div>
+              <span>{{ "admin.legendDone" | translate }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-4 px-5">
+          <div class="setting-box">
+            <h3 class="my-4">Options</h3>
+            <h5 class="mb-2 mt-4">Password</h5>
+            <p>{{ "admin.passwordMessage" | translate }}</p>
+            <div [@slideInDown]="changePassword === true">
+              <div
+                *ngIf="changePassword === true"
+                class="new-password text-center mb-3"
+              >
+                <div class="input-group mb-3">
+                  <input
+                    [type]="passwordType"
+                    class="form-control"
+                    placeholder="{{'admin.passwordPlaceholder' | translate}}"
+                    [(ngModel)]="newPassword"
+                    aria-describedby="button-addon2"
+                  />
+                  <div class="input-group-append">
+                    <button
+                      class="btn btn-outline-light"
+                      type="button"
+                      id="button-addon2"
+                      (click)="changePasswordVisibility()"
+                    >
+                      <fa-icon [icon]="['fas', 'eye']"></fa-icon>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="text-center">
+                <button
+                  *ngIf="changePassword === true"
+                  class="btn btn-light m-auto mt-4"
+                  [disabled]="
+                    newPassword === undefined || newPassword.length < 1
+                  "
+                  (click)="changeAdminPassword()"
+                >
+                  {{ "admin.change" | translate }}
+                </button>
+              </div>
+            </div>
+            <div class="text-center mt-3">
+              <button
+                *ngIf="wannaChangePasswod === true"
+                (click)="
+                  changePassword = !changePassword; wannaChangePasswod = false
+                "
+                class="btn btn-primary m-auto"
+              >
+                {{ "admin.wannaChangePassword" | translate }}
+              </button>
+              <div [@fadeIn]="passwordUpdatedMsg === true">
+                <small
+                  class="mt-5 text-primary"
+                  [@slideInDown]="passwordUpdatedMsg === true"
+                  *ngIf="passwordUpdatedMsg === true"
+                  >{{ "admin.passwordUpdateMsg" | translate }}</small
+                >
+              </div>
+            </div>
+          </div>
+          <div class="my-2 setting-box">
+            <h5 class="my-4">{{ "admin.selectLanguage" | translate }}</h5>
+            <div class="row text-center m-auto mb-3">
+              <div
+                *ngFor="let lang of availableLanguages"
+                class="custom-control custom-radio col-6"
+              >
+                <input
+                  type="radio"
+                  [id]="lang.name"
+                  name="language"
+                  class="custom-control-input"
+                  [(ngModel)]="selectedLanguage"
+                  [value]="lang.value"
+                  (ngModelChange)="
+                    radioNotTouched = false; selectedLanguage = $event
+                  "
+                />
+                <label
+                  class="custom-control-label radio-tertiary"
+                  [for]="lang.name"
+                  >{{ lang.label }}</label
+                >
+              </div>
+            </div>
+            <div class="text-center mt-3">
+              <button
+                (click)="changeSelectedLanguage()"
+                class="btn btn-primary m-auto"
+                [disabled]="radioNotTouched"
+              >
+                {{ "admin.change" | translate }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

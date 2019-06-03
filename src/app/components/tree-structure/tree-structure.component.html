@@ -1,0 +1,29 @@
+<div class="overflow-scroll no-gutters" [ngClass]="{'row': direction === 'horiz', 'nothing': direction === 'vert'}" [@slideInDown]="steps.lenght > 0">
+  <div class="task-col" *ngFor="let task of steps; index as i;">
+   <!--  <div *ngIf="i !==0" class="horizontal-line-container">
+      <div class="d-flex align-items-center justify-content-center horizontal-line"></div>
+    </div> -->
+    <div *ngIf="direction === 'vert'" class="vertical-line"></div>
+    <div class="position-relative">
+      <div class="main-task d-flex justify-content-center align-items-center rounded-circle" [ngClass]="day" [ngClass]="{'task-col': task.steps}"
+        [class.undone]="i > 0 && steps[i-1].done === false" [class.complexTask]="task.steps.length > 0" [class.completed]="task.completed"
+        (click)="selectThisStep(task, i)">
+        {{task.name}}
+      </div>
+      <button class="subtask rounded-circle" *ngIf="task.steps.length > 0" [disabled]="task.done === true" (click)="selectThisStep(task, i)">
+        <fa-icon [icon]="['fas', 'arrow-down']"></fa-icon>
+      </button>
+      <button class="done rounded-circle" *ngIf="task.skipped === false && task.done === false && task.steps.length === 0" [disabled]="i > 0 && steps[i-1].done === false"
+        [class.undone]="i > 0 && steps[i-1].done === false" (click)="done(task, i)">
+        <fa-icon [icon]="['fas', 'check']"></fa-icon>
+      </button>
+      <button class="skip rounded-circle" *ngIf="task.done === false && task.steps.length === 0" [disabled]="i > 0 && steps[i-1].done === false"
+        [class.undone]="i > 0 && steps[i-1].done === false" (click)="skipped()">
+        <fa-icon [icon]="['fas', 'times']"></fa-icon>
+      </button>
+      <div *ngIf="task.stepsVisible === true">
+        <tree-structure *ngIf="task.steps.length > 0" [day]="day" [steps]="task.steps" [parentTask]="task" direction="vert"></tree-structure>
+      </div>
+    </div>
+  </div>
+</div>

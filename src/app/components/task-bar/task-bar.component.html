@@ -1,0 +1,44 @@
+<div class="overflow-scroll">
+  <div *ngFor="let task of tasks; let i = index">
+    <div class="row justify-content-between align-items-center rounded my-3 mx-auto px-3 py-2"
+      [class.btn-dark]="isSubtask === false"
+      [class.badge-light]="isSubtask === true">
+      <div class="col-8">
+        <img class="rounded-circle mg-fluid img-thumbnail mr-3" [src]="task.img" />
+        <span class="">{{task.name}}</span>
+      </div>
+      <div class="d-flex align-items-center justify-content-end no-gutters">
+        <button *ngIf="addButton === true" class="btn btn-primary rounded-circle mx-1" (click)="addTask(task, i)">
+          <fa-icon [icon]="['fas', 'plus']"></fa-icon>
+        </button>
+        <button *ngIf="subTaskButton === true && task.steps.length > 0" class="btn rounded-circle mx-1" (click)="showSubtasks(task, i)">
+          <fa-icon [icon]="['fas', 'list-ul']"></fa-icon>
+        </button>
+        <button *ngIf="deleteButton === true" class="btn btn-danger rounded-circle mx-1" (click)="removeTask(task, i)">
+          <fa-icon [icon]="['fas', 'minus']"></fa-icon>
+        </button>
+        <!-- <button *ngIf="task.steps.length > 0" class="btn btn-danger rounded-circle mx-1" (click)="showSubtasks(task, i)"> show subtask
+          <fa-icon [icon]="['fas', 'minus']"></fa-icon>
+        </button> -->
+        <div *ngIf="moveUpDown === true" class="col ml-1">
+          <button class="btn btn-small d-flex align-items-center justify-content-center mb-1" (click)="move(task, i, 'up')" [disabled]="i===0">
+            <fa-icon [icon]="['fas', 'chevron-up']"></fa-icon>
+          </button>
+          <button class="btn btn-small d-flex align-items-center justify-content-center" (click)="move(task, i, 'down')" [disabled]="i===tasks.length-1">
+            <fa-icon [icon]="['fas', 'chevron-down']"></fa-icon>
+          </button>
+        </div>
+      </div>
+      <div class="col-12">
+        <task-bar
+          *ngIf="task.showSubtasks=== true && addButton === false"
+          [tasks]="task.steps" [addList]=""
+          [moveUpDown]="true"
+          [addButton]="false"
+          [deleteButton]="true"
+          [isSubtask]="true"
+          [subTaskButton]="true"></task-bar>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,77 @@
+@import ~style/variables
+
+$taskWidth: 100px
+$buttonWidth: 30px
+
+.overflow-scroll .no-gutters //tree container
+  height: 520px
+  width: 110px
+
+.mon
+  border-color: $monColor
+.tue
+  border-color: $tueColor
+.wed
+  border-color: $wedColor
+.thu
+  border-color: $thuColor
+.fri
+  border-color: $friColor
+.sat
+  border-color: $satColor
+.sun
+  border-color: $sunColor
+
+.complexTask
+  box-shadow: inset 0 0 0 4px $bg
+.completed
+  //box-shadow: inset 0 0 0 4px $green
+  border-color: $green
+.task-col
+  flex-direction: column
+  margin-right: 45px
+  width: $taskWidth
+  position: relative
+  .done,.skip, .subtask
+    width: $buttonWidth
+    height: $buttonWidth
+    color: #fff
+    position: absolute
+    right: -10px
+  .done
+    background-color: $green
+    top: 5px
+  .skip
+    background-color: $red
+    top: 65px
+  .subtask
+    background-color: $bg
+    border: 1px solid #fff
+    top: 35px
+  .main-task
+    width: $taskWidth
+    height: $taskWidth
+    border-width: 3px
+    border-style: solid
+    background-color: #ccc
+    margin: 0 45px 0 0
+    position: relative
+  .undone
+    border-color: #989898
+    opacity: 0.5
+    -webkit-filter: grayscale(100%) // Safari 6.0 - 9.0
+    filter: grayscale(100%)
+  .vertical-line
+    width: 1px
+    height: 25px
+    //margin: auto
+    background-color: #fff
+    opacity: .5
+    margin: 6px auto
+.horizontal-line-container
+  height: $taskWidth
+  .horizontal-line
+    width: 25px
+    height: 1px
+    background-color: #fff
+    opacity: .5

@@ -1,0 +1,12 @@
+<!-- <app-header></app-header> -->
+<main class="h-100">
+  <app-loading-spinner></app-loading-spinner>
+  <!-- <div class="main-spinner-container" *ngIf="loading">
+    <div id="main-spinner-background"></div>
+    <div class="main-spinner">Loading...</div>
+  </div> -->
+
+  <router-outlet></router-outlet>
+</main>
+
+<app-footer *ngIf="showFooter===true"></app-footer>

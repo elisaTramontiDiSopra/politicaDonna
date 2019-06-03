@@ -1,0 +1,50 @@
+<div class="game-container">
+  <div class="layer w-100">
+    <img [src]=img00 class="bg" />
+    <div *ngFor="let foe of randomFoes">
+      <img *ngIf="foe.visible === true && foe.layer === 'layer00'" (click)="visulizePuff(foe)" class="foe" [src]="imgFoe" [style.left]="foe.x + '%'"
+        [style.bottom]="foe.y + '%'" [style.width]="foe.width + '%'" />
+    </div>
+  </div>
+  <div *ngIf="layer01 === true" class="layer w-100">
+    <img [src]=img01 class="bg" />
+    <div *ngFor="let foe of randomFoes">
+      <img *ngIf="foe.visible === true && foe.layer === 'layer01'" (click)="visulizePuff(foe)" class="foe" [src]="imgFoe" [style.left]="foe.x + '%'"
+        [style.bottom]="foe.y + '%'" [style.width]="foe.width + '%'" />
+    </div>
+  </div>
+  <div *ngIf="layer02 === true" class="layer w-100">
+    <img [src]=img02 class="bg" />
+    <div *ngFor="let foe of randomFoes">
+      <img *ngIf="foe.visible === true && foe.layer === 'layer02'" (click)="visulizePuff(foe)" class="foe" [src]="imgFoe" [style.left]="foe.x + '%'"
+        [style.bottom]="foe.y + '%'" [style.width]="foe.width + '%'" />
+    </div>
+  </div>
+  <div class="layer w-100">
+    <img [src]=img03 class="bg" />
+    <div *ngFor="let foe of randomFoes">
+      <img *ngIf="foe.visible === true && foe.layer === 'layer03'" (click)="visulizePuff(foe)" class="foe" [src]="imgFoe" [style.left]="foe.x + '%'"
+        [style.bottom]="foe.y + '%'" [style.width]="foe.width + '%'" />
+    </div>
+  </div>
+  <div class="points">{{'general.points' | translate}} {{points}}</div>
+  <sprite-animation *ngIf="showPuffAnimation" type="fadeSprite" [frameDuration]="puff.frameDuration" [numberOfFrames]="puff.frameNumber"
+    [image]="puffGif" [totalImageWidth]="puff.totalFrameWidth" [singleImageWidth]="puff.singleImageWidth" [singleImageHeight]="puff.singleImageHeight"
+    [style.left]="puff.x + '%'" [style.bottom]="puff.y + '%'" [scale]="puff.scale"></sprite-animation>
+
+</div>
+
+<div bsModal #endModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- <div class="modal-header">
+        <button type="button" class="close pull-right" (click)="endModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div> -->
+      <div class="modal-body text-center">
+        {{'screens.victory' | translate}}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="h-100 row no-gutters my-4">
+    <div class="col-7 d-flex justify-content-start flex-column align-items-end border-right px-3">
+      <div class="mb-auto w-100">
+        <h3>{{'new.newTask' | translate}}</h3>
+        <img [src]="task.img" class="" />
+        <input type="file" (change)="uploadImage($event)" />
+        <input class="form-control my-3" type="text" placeholder="{{'new.nameTitle' | translate}}" [(ngModel)]="task.name">
+        <div *ngIf="allTasksLength > 0" class="row saving-buttons justify-content-end px-3">
+          <button class="btn btn-primary" (click)="subtask = true">{{'new.addSubtask' | translate}}</button>
+        </div>
+
+        <ng-container *ngIf="allTasksLength > 0">
+          <task-bar [tasks]="steps" [addList]="allTasks" [moveUpDown]="false" [addButton]="true" [deleteButton]="false" [isSubtask]="false"
+            [subTaskButton]="false"></task-bar>
+        </ng-container>
+
+
+        <div class="row saving-buttons justify-content-end px-3 my-3">
+          <button class="btn btn-primary" (click)=saveTask()>{{'general.save' | translate}}</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-5 d-flex justify-content-start flex-column align-items-end border-right px-3">
+      <div class="mb-auto w-100">
+        <h3>{{'edit.allTasks' | translate}}</h3>
+        <p>{{'new.noTasks' | translate}}</p>
+        <ng-container *ngIf="allTasksLength > 0">
+          <task-bar [tasks]="allTasks" [addList]="steps" [moveUpDown]="false" [addButton]="true" [deleteButton]="false" [isSubtask]="false"
+            [subTaskButton]="false"></task-bar>
+        </ng-container>
+      </div>
+      <div class="row saving-buttons justify-content-end px-3">
+        SEARCH BAR
+      </div>
+    </div>
+
+</div>

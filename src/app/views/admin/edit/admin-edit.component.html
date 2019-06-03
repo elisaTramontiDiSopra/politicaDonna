@@ -1,0 +1,52 @@
+<div class="h-100 row no-gutters">
+  <div class="row page-centered">
+    <div class="col-1 border-right day-tabs">
+      <div class="mon d-flex align-items-center justify-content-center border-bottom " (click)="selectedTab = 'mon'">{{"general.mon" | translate}}</div>
+      <div class="tue d-flex align-items-center justify-content-center border-bottom " (click)="selectedTab = 'tue'">{{"general.tue" | translate}}</div>
+      <div class="wed d-flex align-items-center justify-content-center border-bottom " (click)="selectedTab = 'wed'">{{"general.wed" | translate}}</div>
+      <div class="thu d-flex align-items-center justify-content-center border-bottom " (click)="selectedTab = 'thu'">{{"general.thu" | translate}}</div>
+      <div class="fri d-flex align-items-center justify-content-center border-bottom " (click)="selectedTab = 'fri'">{{"general.fri" | translate}}</div>
+      <div class="sat d-flex align-items-center justify-content-center border-bottom " (click)="selectedTab = 'sat'">{{"general.sat" | translate}}</div>
+      <div class="sun d-flex align-items-center justify-content-center" (click)="selectedTab = 'sun'">{{"general.sun" | translate}}</div>
+    </div>
+    <div class="col-6 d-flex justify-content-start flex-column align-items-end border-right px-3">
+      <div class="mb-auto w-100">
+        <h3>{{'edit.'+selectedTab+'Schedule' | translate}}</h3>
+        <task-bar *ngIf="selectedTab === mon" [tasks]="mon" [addList]="allTasks" [moveUpDown]="true" [addButton]="false" [deleteButton]="true"
+          [isSubtask]="false" [subTaskButton]="true"></task-bar>
+       <task-bar *ngIf="selectedTab === tue" [tasks]="tue" [addList]="allTasks" [moveUpDown]="true" [addButton]="false" [deleteButton]="true"
+          [isSubtask]="false" [subTaskButton]="true"></task-bar>
+        <task-bar *ngIf="selectedTab === wed" [tasks]="wed" [addList]="allTasks" [moveUpDown]="true" [addButton]="false" [deleteButton]="true"
+          [isSubtask]="false" [subTaskButton]="true"></task-bar>
+        <task-bar *ngIf="selectedTab === thu" [tasks]="thu" [addList]="allTasks" [moveUpDown]="true" [addButton]="false" [deleteButton]="true"
+          [isSubtask]="false" [subTaskButton]="true"></task-bar>
+        <task-bar *ngIf="selectedTab === fri" [tasks]="fri" [addList]="allTasks" [moveUpDown]="true" [addButton]="false" [deleteButton]="true"
+          [isSubtask]="false" [subTaskButton]="true"></task-bar>
+        <task-bar *ngIf="selectedTab === sat" [tasks]="sat" [addList]="allTasks" [moveUpDown]="true" [addButton]="false" [deleteButton]="true"
+          [isSubtask]="false" [subTaskButton]="true"></task-bar>
+        <task-bar *ngIf="selectedTab === sun" [tasks]="sun" [addList]="allTasks" [moveUpDown]="true" [addButton]="false" [deleteButton]="true"
+          [isSubtask]="false" [subTaskButton]="true"></task-bar>
+      </div>
+      <div class="row saving-buttons justify-content-end px-3">
+        <button class="btn btn-primary" (click)=saveSchedule()>{{'general.saveAll' | translate}}</button>
+      </div>
+    </div>
+    <div class="col-5 d-flex justify-content-start flex-column align-items-end border-right px-3">
+      <div class="mb-auto w-100">
+        <h3>{{'edit.allTasks' | translate}}</h3>
+        <task-bar [tasks]="allTasks" [addList]="mondayTasks" [moveUpDown]="false" [addButton]="true" [deleteButton]="false" [isSubtask]="false"
+          [subTaskButton]="false"></task-bar>
+      </div>
+      <div class="row saving-buttons justify-content-end px-3">
+        SEARCH BAR
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="class-5">
+    <section>
+      <h3 class="my-4">{{'edit.monSchedule' | translate}}</h3>
+    </section>
+  </div>
+  <div class="class-5"></div> -->
+</div>

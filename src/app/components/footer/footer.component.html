@@ -1,0 +1,32 @@
+<footer id="main-footer" class="row justify-content-between align-items-center container-no-padding m-0">
+  <div class="col-4 text-center border-right pointer" (click)="goTo('calendar')">{{'footer.calendar' | translate}}
+    <fa-icon class="ml-4" [icon]="['fas', 'calendar-alt']"></fa-icon>
+  </div>
+  <div class="col-4 text-center border-right pointer" (click)="goTo('game')">{{'footer.game' | translate}}
+    <fa-icon class="ml-4" [icon]="['fas', 'gamepad']"></fa-icon>
+  </div>
+  <div class="col-4 text-center pointer" (click)="passwordModal.show()">{{'footer.admin' | translate}}
+    <fa-icon class="ml-4" [icon]="['fas', 'user-cog']"></fa-icon>
+  </div>
+</footer>
+
+<!-- PASSWORD MODAL  -->
+<div bsModal #passwordModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="input-group d-flex flex-direction-column mb-3">
+          <input [type]="passwordType" class="form-control" placeholder="{{'calendar.passwordPlaceholder' | translate}}"
+            [(ngModel)]="adminPassword" aria-describedby="button-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-outline-primary" type="button" id="button-addon2" (click)="enterAdminMode()">
+              <fa-icon [icon]="['fas', 'arrow-right']"></fa-icon>
+            </button>
+          </div>
+        </div>
+        <div *ngIf="showAlert === true" class="text-danger" role="alert">{{'footer.alertWrongPassword' | translate}}</div>
+      </div>
+    </div>
+  </div>
+</div>
