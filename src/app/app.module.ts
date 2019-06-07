@@ -61,6 +61,8 @@ import { OverlayScreensComponent } from './components/screens-overlay/screens-ov
 import { CountdownComponent } from './components/countdown/countdown.component';
 import { SpriteAnimation } from './components/sprite-animation/sprite-animation.component';
 
+import { SliderComponent } from './components/slider/slider.component';
+
 // SERVICES
 import { LoadingService } from './services/loading.service';
 import { ApiService } from './services/api.service';
@@ -88,6 +90,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AdminNewComponent,
     CharComponent,
     GameComponent,
+    SliderComponent,
 
     HeaderComponent,
     FooterComponent,
