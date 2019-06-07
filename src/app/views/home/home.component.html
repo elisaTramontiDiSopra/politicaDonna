@@ -1,15 +1,40 @@
 <div class="container-no-gutters">
+  <div id="" class="section overflow-hidden">
+    <div id="fvg" class="row justify-content-left skew-left">
+      <img src="../../../public/images/fvg.png" />
+    </div>
 
-  <div id="title" class="row justify-content-center section bg-secondary no-gutters">
-    <div class="bg-primary left-inclined">
-      <h1>La politica e' donna</h1>
+    <div id="title" class="row justify-content-center skew-left z-2">
+      <div class="bg-primary w-100 text-right p-5">
+        <h1 class="unskew-left m-5 p-5">La politica e' donna</h1>
+      </div>
     </div>
   </div>
 
-  <div id="candidates" class="row justify-content-center section bg-primary no-gutters">
+  <!-- <div id="title" class="row justify-content-center section bg-secondary no-gutters h-100">
+    <div class="bg-primary skew-left p-5">
+      <div class="bg-primary unskew-left p-5">
+        <h1>La politica e' donna</h1>
+      </div>
+    </div>
+  </div> -->
+
+  <div id="candidates" class="row justify-content-center section bg-primary no-gutters h-100 z-1">
     <h2>CANDIDATI TOTALI - Elezioni {{year}}</h2>
     <p>Candidate donne {{totalFemalesCandidates}}</p>
     <p>Candidati uomini {{totalMalesCandidates}}</p>
+  </div>
+
+  <div id="" class="row justify-content-center section bg-primary no-gutters h-100 z-1">
+    <h2>Sindaci eletti</h2>
+    <!-- <div *ngFor="let year of ongoingMayors">
+      <h2>{{year}} asd</h2>
+      <div *ngFor="let town of year">
+        <h4>{{town}}</h4>
+        <p *ngFor="let candidate of town.candidati">{{candidate}}</p>
+        <p>{{town.eletto.genere}}</p>
+      </div>
+    </div> -->
   </div>
 
 </div>

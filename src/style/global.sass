@@ -8,7 +8,6 @@ html
   height: 100%
   @include media-breakpoint-down(sm)
     font-size: 14px !important
-
   @include media-breakpoint-down(xs)
     font-size: 12px !important
   body
@@ -23,12 +22,22 @@ button
 .pointer
   cursor: pointer
 
-
 //rotations
 .rotate90
   transform: rotate(90deg)
 .rotate270
-  transform: rotate(270deg)
+
+//skew
+.skew-left
+  transform: skewY(-6deg)
+.unskew-left
+  transform: skewY(6deg)
+
+//z-indexes
+.z-1
+  z-index: 9
+.z-2
+  z-index: 8
 
 //alignment
 .page-centered
@@ -41,17 +50,23 @@ button
   max-height: 500px
 ::-webkit-scrollbar
   display: none
+.overflow-hidden
+  overflow: hidden
 
 //section
 .section
   color: $white
+  .overflow-hidden
 
 //typography
+h1
+  font-size: 5rem
+  text-transform: uppercase
 h2
   color: $white
   letter-spacing: 2px
+  font-size: 3.5rem
   text-transform: uppercase
-
 h3
   border-bottom: 1px solid $light-yellow
   letter-spacing: 2px

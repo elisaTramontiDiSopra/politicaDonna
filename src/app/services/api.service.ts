@@ -15,12 +15,16 @@ export class ApiService {
     return { headers };
   } */
 
-  loadOpenData(year) {
+  /* loadOpenData(year) {
     console.log(year);
     console.log(FVG_URLS[year]);
     return this.http.get<any>(FVG_URLS[year]);
     //return this.http.get<any>(FVG_URLS[year], this.getOptions());
 
+  } */
+
+  loadOpenData(url) {
+    return this.http.get<any>(url);
   }
 
 }
