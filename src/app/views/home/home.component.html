@@ -19,22 +19,21 @@
     </div>
   </div> -->
 
-  <div id="candidates" class="row justify-content-center section bg-primary no-gutters h-100 z-1">
-    <h2>CANDIDATI TOTALI - Elezioni {{year}}</h2>
-    <p>Candidate donne {{totalFemalesCandidates}}</p>
-    <p>Candidati uomini {{totalMalesCandidates}}</p>
+  <div *ngIf="totals[currentYear]" id="candidates" class="row justify-content-center section bg-primary no-gutters h-100 z-1">
+    <div class="col">
+      <h2>CANDIDATI</h2>
+      <p>Candidate donne <span class="text-success">{{totals[currentYear].candidatesF}}</span></p>
+      <p>Candidati uomini <span class="text-success">{{totals[currentYear].candidatesNumber - totals[currentYear].candidatesF}}</span></p>
+    </div>
+    <div class="col">
+      <year-slider></year-slider>
+      <!-- <year-slider *ngIf="FVG_URLS" [min]="FVG_URLS[1][1]" [max]="FVG_URLS[FVG_URLS.length -1][1]" [currentYear]="currentYear" (selectedYear)="changeYear($event)"></year-slider>
+     --></div>
   </div>
 
-  <div id="" class="row justify-content-center section bg-primary no-gutters h-100 z-1">
+  <!-- <div id="" class="row justify-content-center section bg-primary no-gutters h-100 z-1">
     <h2>Sindaci eletti</h2>
-    <!-- <div *ngFor="let year of ongoingMayors">
-      <h2>{{year}} asd</h2>
-      <div *ngFor="let town of year">
-        <h4>{{town}}</h4>
-        <p *ngFor="let candidate of town.candidati">{{candidate}}</p>
-        <p>{{town.eletto.genere}}</p>
-      </div>
-    </div> -->
-  </div>
+
+  </div> -->
 
 </div>
