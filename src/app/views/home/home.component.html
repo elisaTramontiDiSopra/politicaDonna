@@ -20,15 +20,20 @@
   </div> -->
 
   <div *ngIf="totals[currentYear]" id="candidates" class="row justify-content-center section bg-primary no-gutters h-100 z-1">
-    <div class="col">
-      <h2>CANDIDATI</h2>
-      <p>Candidate donne <span class="text-success">{{totals[currentYear].candidatesF}}</span></p>
-      <p>Candidati uomini <span class="text-success">{{totals[currentYear].candidatesNumber - totals[currentYear].candidatesF}}</span></p>
+    <div class="col text-right">
+      <h2 class="m-0 mb-3">CANDIDATI</h2>
+      <div class="text-size-2 line-height-2 offset-2 col-10 p-0">Dal <span class="text-secondary">{{startingYear}}</span>
+        al <span class="text-secondary">{{endingYear}}</span> in Friuli {{totals.totalCandidatesNumber}} persone si sono candidate
+        alla carica di sindaco. Di queste <span class="text-secondary">{{totals.totalCandidatesF}}</span> sono donne.</div>
+      <div class="text-size-2 line-height-2 offset-2 col-10 p-0">Nel {{currentYear}}
+        si sono candidati in <span class="text-secondary">{{totals[currentYear].candidatesNumber}}</span>
+        di cui <span class="text-secondary">{{totals[currentYear].candidatesF}}</span> donne, pari al
+        <span class="text-secondary">{{(totals[currentYear].candidatesF/totals[currentYear].candidatesNumber) | percent:'1.2'}}</span>
+      </div>
+      </div>
+    <div class="col mx-5">
+      <year-slider [min]="startingYear" [max]="endingYear" [currentYear]="currentYear" (selectedYear)="changeYear($event)"></year-slider>
     </div>
-    <div class="col">
-      <year-slider></year-slider>
-      <!-- <year-slider *ngIf="FVG_URLS" [min]="FVG_URLS[1][1]" [max]="FVG_URLS[FVG_URLS.length -1][1]" [currentYear]="currentYear" (selectedYear)="changeYear($event)"></year-slider>
-     --></div>
   </div>
 
   <!-- <div id="" class="row justify-content-center section bg-primary no-gutters h-100 z-1">

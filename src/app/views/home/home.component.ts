@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { ApiService } from 'app/services/api.service';
 import { FVG_URLS } from 'app/constants';
 import * as _ from 'lodash';
-import { elementStyleProp } from '@angular/core/src/render3';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -10,12 +9,11 @@ import { Observable } from 'rxjs';
   styleUrls: ['./home.component.sass']
 })
 export class HomeComponent {
-  public totalCandidates = 0;
-  public totalFemalesCandidates = 0;
-  public totalMalesCandidates = 0;
-  public initialYear = 2017;
+  //total vars
+  public totalCandidates = 0; public totalFemalesCandidates = 0; public totalMalesCandidates = 0;
+  //year slider vars
+  public startingYear = '2016'; public endingYear = '2019'; public currentYear = 2016;
 
-  public currentYear = 2016;
   public ongoingMayors = {};
   public allYearsVotingResults = {};
   public allYearsBallotingResults = {};
@@ -32,6 +30,9 @@ export class HomeComponent {
 
   ngOnInit() {
     this.loadOpenData(FVG_URLS);
+    //initialize year slider vars based on FVG_URLS - don't do it with FVG_URLS directly to avoid undefined error
+    this.startingYear = (FVG_URLS[1][1].slice(-1) === 'b') ? FVG_URLS[1][1].slice(0, -1) : FVG_URLS[1][1];
+    this.endingYear = FVG_URLS[FVG_URLS.length - 1][1];
   }
 
   loadOpenData(urls) {
@@ -93,7 +94,6 @@ export class HomeComponent {
     this.totals['totalCandidatesNumber'] = this.totals.totalCandidatesNumber + this.ongoingMayors[year][town].candidatesNumber,
     this.totals[year]['candidatesF'] = this.totals[year]['candidatesF'] + this.ongoingMayors[year][town].candidatesF;
     this.totals[year]['candidatesNumber'] = this.totals[year]['candidatesNumber'] + this.ongoingMayors[year][town].candidatesNumber;
-    console.log(this.totals)
   }
 
   changeYear(selectedYear) {
