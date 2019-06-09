@@ -1,5 +1,13 @@
 <div class="row no-gutters">
-  <div class="col-2 pointer" (click)="selectedYear.emit(currentYear - 1)"><i class="fas fa-chevron-left"></i></div>
-  <div class="col-8">{{currentYear}}</div>
-  <div class="col-2 pointer" (click)="selectedYear.emit(currentYear + 1)" ><i class="fas fa-chevron-right"></i></div>
+  <button class="col-2 pointer text-right text-light bg-transparent" (click)="selectedYear.emit(currentYear - 1)"
+    [disabled]="currentYear.toString() === min"
+    [class.text-white-50]="currentYear.toString() === min">
+    <fa-icon [icon]="['fas', 'chevron-left']"></fa-icon>
+  </button>
+  <div class="col-8 text-center font-weight-bold text-size-5">{{currentYear}}</div>
+  <button class="col-2 pointer text-light bg-transparent" (click)="selectedYear.emit(currentYear + 1)"
+    [disabled]="currentYear.toString() === max"
+    [class.text-white-50]="currentYear.toString() === max">
+    <fa-icon [icon]="['fas', 'chevron-right']"></fa-icon>
+  </button>
 </div>
