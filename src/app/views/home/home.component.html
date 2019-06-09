@@ -19,7 +19,7 @@
     </div>
   </div> -->
 
-  <div *ngIf="totals[currentYear]" id="candidates" class="row justify-content-center section bg-primary no-gutters h-100 z-1">
+  <div *ngIf="totals[currentYear]" id="candidates" class="row justify-content-center align-content-center section bg-primary no-gutters h-100 z-1">
     <div class="col text-right">
       <h2 class="m-0 mb-3">CANDIDATI</h2>
       <div class="text-size-2 line-height-2 offset-2 col-10 p-0">Dal <span class="text-secondary">{{startingYear}}</span>
@@ -32,8 +32,10 @@
       </div>
       </div>
     <div class="col mx-5">
+      <candidates-chart [female]="totals[currentYear].candidatesF" [total]="totals[currentYear].candidatesNumber"></candidates-chart>
       <year-slider [min]="startingYear" [max]="endingYear" [currentYear]="currentYear" (selectedYear)="changeYear($event)"></year-slider>
     </div>
+
   </div>
 
   <!-- <div id="" class="row justify-content-center section bg-primary no-gutters h-100 z-1">

@@ -62,6 +62,7 @@ import { CountdownComponent } from './components/countdown/countdown.component';
 import { SpriteAnimation } from './components/sprite-animation/sprite-animation.component';
 
 import { SliderComponent } from './components/slider/slider.component';
+import { CandidatesChartComponent } from './components/candidates-chart/candidates-chart.component';
 
 // SERVICES
 import { LoadingService } from './services/loading.service';
@@ -91,6 +92,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     CharComponent,
     GameComponent,
     SliderComponent,
+    CandidatesChartComponent,
 
     HeaderComponent,
     FooterComponent,

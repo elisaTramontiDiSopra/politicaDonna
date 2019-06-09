@@ -30,8 +30,10 @@ import {
   faListUl as fasListUl,
   faCalendarAlt as fasCalendarAlt,
   faGamepad as fasGamepad,
+  faMale as fasMale,
+  faFemale as fasFemale,
 } from '@fortawesome/free-solid-svg-icons';
-library.add(fasArrowDown, fasArrowUp, fasArrowRight, fasChevronUp, fasChevronDown, fasChevronLeft, fasChevronRight, fasTimes, fasCheck, fasEye, fasUserCog, fasPlus, fasMinus, fasTrash, fasSignOutAlt, fasListUl, fasCalendarAlt, fasGamepad);
+library.add(fasArrowDown, fasArrowUp, fasArrowRight, fasChevronUp, fasChevronDown, fasChevronLeft, fasChevronRight, fasTimes, fasCheck, fasEye, fasUserCog, fasPlus, fasMinus, fasTrash, fasSignOutAlt, fasListUl, fasCalendarAlt, fasGamepad, fasMale, fasFemale);
 import {
   faGoogle as fabGoogle
 } from '@fortawesome/free-brands-svg-icons';
