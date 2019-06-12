@@ -37,15 +37,17 @@ export class HomeComponent {
 
   loadOpenData(urls) {
     urls.forEach((element) => {
+      let ballotting = element[1].length === 5;
+      let year = element[1].slice(0, -1);  //I'm gonna use it just if it is a b url,
+
       this.api.loadOpenData(element[0]).subscribe(
         response => {
-          let year = element[1].slice(0, -1);  //I'm gonna use it just if it is a b url,
           let cleanedResponse = [];
           cleanedResponse = this.cleanResponse(response);         // delete unuseful data
           cleanedResponse = _.groupBy(cleanedResponse, 'comune'); // group by town
           //se sono ballottaggi mettili in una variabile temporanea diversa ed esci,
           //se sono voti al primo turno salva tutto e cerca il sindaco
-          if (element[1].slice(-1) === 'b') {
+          if (ballotting) {
             this.allYearsBallotingResults[year] = cleanedResponse;
             return
           }

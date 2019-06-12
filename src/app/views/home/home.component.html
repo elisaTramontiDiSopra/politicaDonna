@@ -6,41 +6,57 @@
 
     <div id="title" class="row justify-content-center skew-left z-2">
       <div class="bg-primary w-100 text-right p-5">
-        <h1 class="unskew-left m-5 p-5">La politica e' donna</h1>
+        <h1 class="unskew-left m-5 p-5">La politica <br />e' donna</h1>
+        <div class="unskew-left row justify-content-end">
+          <h4 class="mb-3 text-secondary">CANDIDATI</h4>
+          <h4 class="square-small border border-secondary d-inline-block mx-4 text-center text-secondary">1</h4>
+        </div>
+        <div class="unskew-left row justify-content-end">
+          <h4 class="mb-3 text-secondary">ELETTI</h4>
+          <h4 class="square-small border border-secondary d-inline-block mx-4 text-center text-secondary">2</h4>
+        </div>
+        <div class="unskew-left row justify-content-end">
+          <h4 class="mb-3 text-secondary">IN CARICA</h4>
+          <h4 class="square-small border border-secondary d-inline-block mx-4 text-center text-secondary">3</h4>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- <div id="title" class="row justify-content-center section bg-secondary no-gutters h-100">
-    <div class="bg-primary skew-left p-5">
-      <div class="bg-primary unskew-left p-5">
-        <h1>La politica e' donna</h1>
-      </div>
-    </div>
-  </div> -->
-
   <div *ngIf="totals[currentYear]" id="candidates" class="row justify-content-center align-content-center section bg-primary no-gutters h-100 z-1">
-    <div class="col text-right">
-      <h2 class="m-0 mb-3">CANDIDATI</h2>
-      <div class="text-size-2 line-height-2 offset-2 col-10 p-0">Dal <span class="text-secondary">{{startingYear}}</span>
-        al <span class="text-secondary">{{endingYear}}</span> in Friuli {{totals.totalCandidatesNumber}} persone si sono candidate
-        alla carica di sindaco. Di queste <span class="text-secondary">{{totals.totalCandidatesF}}</span> sono donne.</div>
-      <div class="text-size-2 line-height-2 offset-2 col-10 p-0">Nel {{currentYear}}
+    <div class="col no'gutters text-right m-auto border border-white pt-5 pr-5 border-top-0 border-bottom-0 border-left-0">
+      <div class="row no-gutters justify-content-end">
+        <h2 class="mb-3 text-secondary">CANDIDATI</h2>
+        <h2 class="square border border-secondary d-inline-block ml-4 text-center text-secondary">1</h2>
+      </div>
+      <div class="text-size-2 line-height-2 offset-4 col-8 p-0">
+        Dal {{startingYear}} al {{endingYear}} in Friuli {{totals.totalCandidatesNumber}} persone si sono candidate
+        alla carica di sindaco. Di queste olo <span class="text-secondary">{{totals.totalCandidatesF}}</span> sono donne, pari al
+        <span class="text-secondary">{{(totals.candidatesF/totals.candidatesNumber) | percent:'1.2'}}</span>.</div>
+      <!-- <div class="text-size-2 line-height-2 offset-2 col-10 p-0">Nel {{currentYear}}
         si sono candidati in <span class="text-secondary">{{totals[currentYear].candidatesNumber}}</span>
         di cui <span class="text-secondary">{{totals[currentYear].candidatesF}}</span> donne, pari al
         <span class="text-secondary">{{(totals[currentYear].candidatesF/totals[currentYear].candidatesNumber) | percent:'1.2'}}</span>
-      </div>
-      </div>
+      </div> -->
+      <year-slider [min]="startingYear" [max]="endingYear" [currentYear]="currentYear" (selectedYear)="changeYear($event)"></year-slider>
+    </div>
     <div class="col mx-5">
       <candidates-chart [female]="totals[currentYear].candidatesF" [total]="totals[currentYear].candidatesNumber"></candidates-chart>
-      <year-slider [min]="startingYear" [max]="endingYear" [currentYear]="currentYear" (selectedYear)="changeYear($event)"></year-slider>
     </div>
 
   </div>
 
-  <!-- <div id="" class="row justify-content-center section bg-primary no-gutters h-100 z-1">
-    <h2>Sindaci eletti</h2>
 
-  </div> -->
+  <div *ngIf="totals[currentYear]" id="sindaci" class="row justify-content-center align-content-center section bg-primary no-gutters h-100 z-1">
+    <div class="col no'gutters text-right m-auto border border-white pt-5 pr-5 border-top-0 border-bottom-0 border-left-0">
+      <div class="row no-gutters justify-content-end">
+        <h2 class="mb-3 text-secondary">Sindaci</h2>
+        <h2 class="square border border-secondary d-inline-block ml-4 text-center text-secondary">3</h2>
+      </div>
+      <div class="text-size-2 line-height-2 offset-4 col-8 p-0">
+      </div>
 
+    </div>
+
+  </div>
 </div>
