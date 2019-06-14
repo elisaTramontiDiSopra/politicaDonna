@@ -3,6 +3,7 @@ import { ApiService } from 'app/services/api.service';
 import { FVG_URLS } from 'app/constants';
 import * as _ from 'lodash';
 import { Observable } from 'rxjs';
+import { elementContainerEnd } from '@angular/core/src/render3';
 
 @Component({
   templateUrl: './home.component.html',
@@ -14,7 +15,9 @@ export class HomeComponent {
   //year slider vars
   public startingYear = '2016'; public endingYear = '2019'; public currentYear = 2016;
 
-  public ongoingMayors = {};
+  public mayors = {};
+  public ongoingMayor = {};
+  public elected = [];
   public allYearsVotingResults = {};
   public allYearsBallotingResults = {};
   public emptyOngoingMayorModel = {
@@ -23,7 +26,7 @@ export class HomeComponent {
     'eletto': '',
     'genereEletto': '',
   }
-  public totals = {totalCandidatesF: 0, totalCandidatesNumber: 0}; //plus the years specifcs
+  public totals = { totalCandidatesF: 0, totalCandidatesNumber: 0 }; //plus the years specifcs
 
   constructor(public api: ApiService) { }
 
@@ -31,32 +34,107 @@ export class HomeComponent {
   ngOnInit() {
     this.loadOpenData(FVG_URLS);
     //initialize year slider vars based on FVG_URLS - don't do it with FVG_URLS directly to avoid undefined error
-    this.startingYear = (FVG_URLS[1][1].slice(-1) === 'b') ? FVG_URLS[1][1].slice(0, -1) : FVG_URLS[1][1];
-    this.endingYear = FVG_URLS[FVG_URLS.length - 1][1];
+    //this.startingYear = (FVG_URLS[1][1].slice(-1) === 'b') ? FVG_URLS[1][1].slice(0, -1) : FVG_URLS[1][1];
+    //this.endingYear = FVG_URLS[FVG_URLS.length - 1][1];
+  }
+  loadOpenData(urls) {
+    let promisesArray = this.createThePromiseArray(urls);
+    Promise.all(promisesArray).then(value => {
+      return value.filter(c => c !== 'ballottaggio') //cleaned resuls
+    }).then(v => {
+      v.forEach(yearObject => {
+        this.findMayor(yearObject)
+      })
+    });
   }
 
-  loadOpenData(urls) {
-    urls.forEach((element) => {
+  createThePromiseArray(urls) {
+    //return promiseArray
+    return urls.map((element) => {
       let ballotting = element[1].length === 5;
-      let year = element[1].slice(0, -1);  //I'm gonna use it just if it is a b url,
-
-      this.api.loadOpenData(element[0]).subscribe(
-        response => {
+      let year = ballotting === true ? element[1].slice(0, -1) : element[1];
+      return new Promise((resolve, reject) => {
+        this.api.loadOpenData(element[0]).subscribe(response => {
           let cleanedResponse = [];
-          cleanedResponse = this.cleanResponse(response);         // delete unuseful data
-          cleanedResponse = _.groupBy(cleanedResponse, 'comune'); // group by town
+          cleanedResponse = this.cleanResponse(response, year);   // delete unuseful data
+          cleanedResponse = _.groupBy(cleanedResponse, 'comune');
           //se sono ballottaggi mettili in una variabile temporanea diversa ed esci,
           //se sono voti al primo turno salva tutto e cerca il sindaco
           if (ballotting) {
             this.allYearsBallotingResults[year] = cleanedResponse;
-            return
+            resolve("ballottaggio");
           }
-          this.findTheMayors(cleanedResponse, element[1])}
-      );
+          resolve(cleanedResponse);
+        });
+      });
     });
   }
 
-  cleanResponse(response) {
+  findMayor(allTownCandidates) {
+    for (let town in allTownCandidates) {
+      let whereToLookForTheElected = allTownCandidates[town];
+      let year = whereToLookForTheElected[0].anno;
+      this.mayors[year] === undefined ? this.mayors[year] = {} : this.mayors[year]
+      let ballottingValue = false;
+      //if the value is inside the ballotting array then look for it there
+      //otherwise is a regular election
+      //this fixes the problem of calculating population and votes relying on the region results
+      if (this.allYearsBallotingResults[year][town]) {
+        whereToLookForTheElected = this.allYearsBallotingResults[year][town];
+        ballottingValue = true;
+      }
+
+      this.findElected(whereToLookForTheElected).then((elected) => {
+        //save all candidates and results of an election inside mayors array divided by year
+        this.createMayorArray(town, year, elected, allTownCandidates[town], ballottingValue)
+        //save only the last election to have the current mayor in ongoingMayors
+        this.createOngoingMayorsArray(town, year, elected);
+        this.calculatingTotals(year, town);
+      })
+    }
+  }
+
+  async findElected(whereToLookForTheElected) {
+    return _.maxBy(whereToLookForTheElected, c => c['voti'])
+  }
+
+  createMayorArray(town, year, elected, allTownCandidates, ballottingValue) {
+    this.mayors[year][town] = {
+      candidati: allTownCandidates,
+      candidatesNumber: allTownCandidates.length,
+      candidatesF: allTownCandidates.filter(c => c.genere === 'F').length,
+      eletto: elected,
+      ballottaggio: ballottingValue,
+      anno: year,
+    };
+  }
+  createOngoingMayorsArray(town, year, elected) {
+    if (this.ongoingMayor[town] && this.ongoingMayor[town]['anno'] > year) { return }
+    switch (elected.provincia) {
+      case "Pordenone":
+        elected.provincia = "PN"
+        break
+      case "Udine":
+        elected.provincia = "UD"
+        break
+      case "Gorizia":
+        elected.provincia = "GO"
+        break
+      case "Trieste":
+        elected.provincia = "TS"
+        break
+    }
+
+    this.ongoingMayor[town] = {
+      anno: year,
+      eletto: elected.nome + " " + elected.cognome,
+      elettoGenere: elected.genere,
+      comune: town,
+      provincia: elected.provincia
+
+    }
+  }
+  cleanResponse(response, year) {
     return response.map((e, i) => {
       return {
         nome: e.nome,
@@ -64,38 +142,18 @@ export class HomeComponent {
         voti: e.voti,
         genere: e.genere,
         provincia: e.provincia,
-        comune: e.comune
+        comune: e.comune,
+        anno: year
       }
     })
   }
 
-  findTheMayors(allTownCandidates, year) {
-    this.ongoingMayors[year] === undefined ? this.ongoingMayors[year] = {} : this.ongoingMayors[year]
-    for (let town in allTownCandidates) {
-      let whereToLookForTheElected = allTownCandidates[town];
-      let ballottingValue = false;
-      //se ci sono >2 candidati c'e' ballottaggio quindi cerco l'eletto tra i ballottaggi
-      if (allTownCandidates[town].length > 2) {
-        whereToLookForTheElected = this.allYearsBallotingResults[year][town];
-        ballottingValue = true;
-      }
-      this.ongoingMayors[year][town] = {
-        candidati: allTownCandidates[town],
-        candidatesNumber: allTownCandidates[town].length,
-        candidatesF: allTownCandidates[town].filter(c => c.genere === 'F').length,
-        eletto: _.maxBy(whereToLookForTheElected, c => c['voti']),
-        ballottaggio: ballottingValue
-      };
-      this.calculatingTotals(year, town);
-    }
-  }
-
   calculatingTotals(year, town) {
-    this.totals[year] === undefined ? this.totals[year] = {candidatesF: 0, candidatesNumber: 0} : this.totals[year]
-    this.totals['totalCandidatesF'] = this.totals.totalCandidatesF + this.ongoingMayors[year][town].candidatesF,
-    this.totals['totalCandidatesNumber'] = this.totals.totalCandidatesNumber + this.ongoingMayors[year][town].candidatesNumber,
-    this.totals[year]['candidatesF'] = this.totals[year]['candidatesF'] + this.ongoingMayors[year][town].candidatesF;
-    this.totals[year]['candidatesNumber'] = this.totals[year]['candidatesNumber'] + this.ongoingMayors[year][town].candidatesNumber;
+    this.totals[year] === undefined ? this.totals[year] = { candidatesF: 0, candidatesNumber: 0 } : this.totals[year]
+    this.totals['totalCandidatesF'] = this.totals.totalCandidatesF + this.mayors[year][town].candidatesF,
+      this.totals['totalCandidatesNumber'] = this.totals.totalCandidatesNumber + this.mayors[year][town].candidatesNumber,
+      this.totals[year]['candidatesF'] = this.totals[year]['candidatesF'] + this.mayors[year][town].candidatesF;
+    this.totals[year]['candidatesNumber'] = this.totals[year]['candidatesNumber'] + this.mayors[year][town].candidatesNumber;
   }
 
   changeYear(selectedYear) {

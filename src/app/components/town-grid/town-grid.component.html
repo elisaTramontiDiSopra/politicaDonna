@@ -1,0 +1,12 @@
+<div class="row no-gutters">
+  <div *ngFor="let col of arrayGrid; let even = even" class="col mr-3" [ngClass]="{'mt-5' : even}">
+    <div *ngFor="let town of col" class="squared bg-dark d-flex flex-column justify-content-between border mb-3 position-relative" [ngClass]="{'border-secondary': town.elettoGenere === 'F',
+                     'border-primary': town.elettoGenere === 'M'}">
+      <!-- <div class="provincia bg-dark border border-muted border-top-0 border-bottom-0 px-2 mx-2 d-flex position-absolute justify-content-center">
+        {{town.provincia}}</div> -->
+      <div class="text-lowercase text-center font-weight-bold border border-muted border-top-0 border-left-0 border-right-0 mx-2 pt-2"><small>{{town.comune}}</small></div>
+      <div class="text-uppercase text-center">{{town.eletto}}</div>
+      <div class="text-center text-white" [ngClass]="{'bg-secondary': town.elettoGenere === 'F', 'bg-primary': town.elettoGenere === 'M'}">{{town.anno}}</div>
+    </div>
+  </div>
+</div>

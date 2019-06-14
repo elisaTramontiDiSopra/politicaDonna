@@ -23,7 +23,7 @@
     </div>
   </div>
 
-  <div *ngIf="totals[currentYear]" id="candidates" class="row justify-content-center align-content-center section bg-primary no-gutters h-100 z-1">
+  <div *ngIf="totals[currentYear]" id="candidates" class="row justify-content-center align-content-center section bg-dark no-gutters h-100 z-1">
     <div class="col no'gutters text-right m-auto border border-white pt-5 pr-5 border-top-0 border-bottom-0 border-left-0">
       <div class="row no-gutters justify-content-end">
         <h2 class="mb-3 text-secondary">CANDIDATI</h2>
@@ -47,16 +47,14 @@
   </div>
 
 
-  <div *ngIf="totals[currentYear]" id="sindaci" class="row justify-content-center align-content-center section bg-primary no-gutters h-100 z-1">
-    <div class="col no'gutters text-right m-auto border border-white pt-5 pr-5 border-top-0 border-bottom-0 border-left-0">
+  <div *ngIf="totals[currentYear]" id="sindaci" class="row justify-content-center align-content-center section bg-dark no-gutters h-100 z-1">
+    <!-- <div class="col no'gutters text-right m-auto border border-white pt-5 pr-5 border-top-0 border-bottom-0 border-left-0">
       <div class="row no-gutters justify-content-end">
         <h2 class="mb-3 text-secondary">Sindaci</h2>
         <h2 class="square border border-secondary d-inline-block ml-4 text-center text-secondary">3</h2>
       </div>
-      <div class="text-size-2 line-height-2 offset-4 col-8 p-0">
-      </div>
-
-    </div>
+    </div> -->
+    <town-grid [elected]="ongoingMayor"></town-grid>
 
   </div>
 </div>

@@ -63,6 +63,7 @@ import { SpriteAnimation } from './components/sprite-animation/sprite-animation.
 
 import { SliderComponent } from './components/slider/slider.component';
 import { CandidatesChartComponent } from './components/candidates-chart/candidates-chart.component';
+import { TownGridComponent } from './components/town-grid/town-grid.component';
 
 // SERVICES
 import { LoadingService } from './services/loading.service';
@@ -93,6 +94,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     GameComponent,
     SliderComponent,
     CandidatesChartComponent,
+    TownGridComponent,
 
     HeaderComponent,
     FooterComponent,
