@@ -2,9 +2,10 @@
   <button class="col-2 pointer text-right text-light bg-transparent" (click)="selectedYear.emit(currentYear - 1)"
     [disabled]="currentYear.toString() === min"
     [class.text-white-50]="currentYear.toString() === min">
-    <fa-icon [icon]="['fas', 'chevron-left']"></fa-icon>
+    <i class="la la-angle-left"></i>
+    <!-- <fa-icon [icon]="['fas', 'chevron-left']"></fa-icon> -->
   </button>
-  <div class="col-8 text-center font-weight-bold text-size-5">{{currentYear}}</div>
+  <h2 class="col-8 text-center">{{currentYear}}</h2>
   <button class="col-2 pointer text-light text-left bg-transparent" (click)="selectedYear.emit(currentYear + 1)"
     [disabled]="currentYear.toString() === max"
     [class.text-white-50]="currentYear.toString() === max">
