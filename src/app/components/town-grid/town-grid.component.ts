@@ -11,16 +11,8 @@ export class TownGridComponent implements OnInit {
 
   public numberOfColumns = 18;
   //public numberOfElementsForColumn = 12;
-  public numberOfElementsForColumn = 8;
+  public numberOfElementsForColumn = 6;
   public arrayGrid = [];
-  public test = [
-
-    { anno: 2016, comune: 'aviano', genere: 'f', nome: 'elisa', provincia: 'pn' },
-    /* { anno: 2016, comune: 'aviano', genere: 'f', nome: 'elisa', provincia: 'pn' },
-   { anno: 2016, comune: 'aviano', genere: 'f', nome: 'elisa', provincia: 'pn' },
-   { anno: 2016, comune: 'aviano', genere: 'f', nome: 'elisa', provincia: 'pn' },
-   { anno: 2016, comune: 'aviano', genere: 'f', nome: 'elisa', provincia: 'pn' } */
-  ]
 
   ngOnInit() {
     //console.log(this.elected)
