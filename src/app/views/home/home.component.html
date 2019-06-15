@@ -1,12 +1,21 @@
+<!-- SECTION 1: nel xxx e entrata in vigore la legge sulle pari opportunita'nelle liste, questa [ la storai di cosa e; successo dopo
+SECTION 2x:
+SECTION 3: candidati divisi per anno
+SECTION 4x: candidati totali
+SECTION 5: eletti
+SECTION 6x: dal XXXX ci sono state XXX elezioni con almeno due candidati donna e XXXX con almeno due candidati uomini
+SECTION 7: situazione attuale
+ -->
+
 <div class="container-no-gutters">
-  <div id="" class="section overflow-hidden">
+  <!-- <div id="" class="section overflow-hidden">
     <div id="fvg" class="row justify-content-left skew-left">
       <img src="../../../public/images/fvg.png" />
     </div>
 
     <div id="title" class="row justify-content-center skew-left z-2">
-      <div class="bg-primary w-100 text-right p-5">
-        <h1 class="unskew-left m-5 p-5">La politica <br />e' donna</h1>
+      <div class="bg-dark w-100 text-right p-5">
+        <h1 class="unskew-left m-5 p-5">La politica <br /><span class="text-secondary">non</span> e' donna</h1>
         <div class="unskew-left row justify-content-end">
           <h4 class="mb-3 text-secondary">CANDIDATI</h4>
           <h4 class="square-small border border-secondary d-inline-block mx-4 text-center text-secondary">1</h4>
@@ -21,18 +30,40 @@
         </div>
       </div>
     </div>
+  </div> -->
+
+  <div id="" class="section overflow-hidden">
+    <div id="fvg" class="row justify-content-left">
+      <img src="../../../public/images/fvg_intro.jpg" />
+    </div>
+    <div class="triangle-up-left text-white"></div>
+    <div id="title" class="row justify-content-center">
+      <div class="bg-dark w-100 text-right p-5">
+        <h1 class="m-5 p-5">La politica <br /><span class="text-secondary">non</span> e' donna</h1>
+        <hr>
+        <h3>Tratto da una storia vera</h3>
+      </div>
+    </div>
+  </div>
+
+  <div id="onceUponATime" cass="section bg-primary row justify-content-center align-items-center my-5 py-5">
+    <div class="col-7 m-auto text-center">
+      <h3>La legge regionale 19 del 2013 ha introdotto delle misure per favorire la rappresentanza di genere nelle elezioni di tutti i suoi comuni.</h3>
+      <h3>Questa e' la storia di cio'che e'successo dopo</h3>
+    </div>
   </div>
 
   <div *ngIf="totals[currentYear]" id="candidates" class="row justify-content-center align-content-center section bg-dark no-gutters h-100 z-1">
-    <div class="col no'gutters text-right m-auto border border-white pt-5 pr-5 border-top-0 border-bottom-0 border-left-0">
+    <div class="col no-gutters text-right m-auto border border-white pt-5 pr-5 border-top-0 border-bottom-0 border-left-0">
       <div class="row no-gutters justify-content-end">
         <h2 class="mb-3 text-secondary">CANDIDATI</h2>
         <h2 class="square border border-secondary d-inline-block ml-4 text-center text-secondary">1</h2>
       </div>
-      <div class="text-size-2 line-height-2 offset-4 col-8 p-0">
-        Dal {{startingYear}} al {{endingYear}} in Friuli {{totals.totalCandidatesNumber}} persone si sono candidate
-        alla carica di sindaco. Di queste olo <span class="text-secondary">{{totals.totalCandidatesF}}</span> sono donne, pari al
-        <span class="text-secondary">{{(totals.candidatesF/totals.candidatesNumber) | percent:'1.2'}}</span>.</div>
+      <div class="offset-4 col-8 p-0">
+        <h3>Nel {{currentYear}} in Friuli {{totals[currentYear].totalCandidatesNumber}} persone si sono candidate
+        alla carica di sindaco. Di queste <span class="text-secondary">{{totals[currentYear].candidatesF}}</span> sono donne, pari al
+        <span class="text-secondary">{{(totals[currentYear].candidatesF/totals[currentYear].candidatesNumber) | percent:'1.2'}}</span>.</h3>
+      </div>
       <!-- <div class="text-size-2 line-height-2 offset-2 col-10 p-0">Nel {{currentYear}}
         si sono candidati in <span class="text-secondary">{{totals[currentYear].candidatesNumber}}</span>
         di cui <span class="text-secondary">{{totals[currentYear].candidatesF}}</span> donne, pari al
@@ -43,18 +74,34 @@
     <div class="col mx-5">
       <candidates-chart [female]="totals[currentYear].candidatesF" [total]="totals[currentYear].candidatesNumber"></candidates-chart>
     </div>
+  </div>
 
+  <div id="afd" class="row">
+    <div class="triangle-down-right text-white"></div>
+
+    <div class="bg-white text-dark w-100 row p-5">
+      <h3 class="offset-2 col-4 text-right border-dark border-top-0 border-bottom-0 border-left-0">
+        Dal {{startingYear}} al {{endingYear}} in Friuli {{totals.totalCandidatesNumber}} persone si sono candidate
+        alla carica di sindaco. Di queste solo <span class="text-secondary font-weight-bold">{{totals.totalCandidatesF}}</span> sono donne, pari al
+      </h3>
+
+      <h2 class="border-secondary d-inline-block ml-4 text-center text-secondary px-4">{{(totals.totalCandidatesF/totals.totalCandidatesNumber) | percent:'1.2'}}</h2>
+    </div>
+    <div class="triangle-up-right text-white"></div>
   </div>
 
 
-  <div *ngIf="totals[currentYear]" id="sindaci" class="row justify-content-center align-content-center section bg-dark no-gutters h-100 z-1">
-    <!-- <div class="col no'gutters text-right m-auto border border-white pt-5 pr-5 border-top-0 border-bottom-0 border-left-0">
+  <div *ngIf="totals[currentYear]" id="inCarica" class="row justify-content-center align-content-center section bg-dark no-gutters h-100 z-1">
+    <div class="col no-gutters text-right m-auto border border-white pt-5 pr-5 border-top-0 border-bottom-0 border-left-0">
       <div class="row no-gutters justify-content-end">
-        <h2 class="mb-3 text-secondary">Sindaci</h2>
+        <h2 class="mb-3 text-secondary">In carica</h2>
         <h2 class="square border border-secondary d-inline-block ml-4 text-center text-secondary">3</h2>
       </div>
-    </div> -->
-    <town-grid [elected]="ongoingMayor"></town-grid>
-
+    </div>
+    <div class="">
+      <town-grid [elected]="ongoingMayor"></town-grid>
+    </div>
   </div>
+
+
 </div>

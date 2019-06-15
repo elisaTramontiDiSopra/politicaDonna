@@ -13,19 +13,20 @@ export class HomeComponent {
   //total vars
   public totalCandidates = 0; public totalFemalesCandidates = 0; public totalMalesCandidates = 0;
   //year slider vars
-  public startingYear = '2016'; public endingYear = '2019'; public currentYear = 2016;
+  //public startingYear = '2016'; public endingYear = '2019';
+  public currentYear = 2016;
 
   public mayors = {};
   public ongoingMayor = {};
   public elected = [];
-  public allYearsVotingResults = {};
+  //public allYearsVotingResults = {};
   public allYearsBallotingResults = {};
-  public emptyOngoingMayorModel = {
+  /* public emptyOngoingMayorModel = {
     'nomeComune': '',
     'candidati': [],
     'eletto': '',
     'genereEletto': '',
-  }
+  } */
   public totals = { totalCandidatesF: 0, totalCandidatesNumber: 0 }; //plus the years specifcs
 
   constructor(public api: ApiService) { }
@@ -33,10 +34,8 @@ export class HomeComponent {
 
   ngOnInit() {
     this.loadOpenData(FVG_URLS);
-    //initialize year slider vars based on FVG_URLS - don't do it with FVG_URLS directly to avoid undefined error
-    //this.startingYear = (FVG_URLS[1][1].slice(-1) === 'b') ? FVG_URLS[1][1].slice(0, -1) : FVG_URLS[1][1];
-    //this.endingYear = FVG_URLS[FVG_URLS.length - 1][1];
   }
+
   loadOpenData(urls) {
     let promisesArray = this.createThePromiseArray(urls);
     Promise.all(promisesArray).then(value => {
@@ -110,7 +109,7 @@ export class HomeComponent {
   }
   createOngoingMayorsArray(town, year, elected) {
     if (this.ongoingMayor[town] && this.ongoingMayor[town]['anno'] > year) { return }
-    switch (elected.provincia) {
+    /* switch (elected.provincia) {
       case "Pordenone":
         elected.provincia = "PN"
         break
@@ -123,7 +122,7 @@ export class HomeComponent {
       case "Trieste":
         elected.provincia = "TS"
         break
-    }
+    } */
 
     this.ongoingMayor[town] = {
       anno: year,
