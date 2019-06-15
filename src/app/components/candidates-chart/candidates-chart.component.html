@@ -7,16 +7,16 @@
       [style.height]="(1-(female/total)) * 100 + '%'">
       <fa-icon [icon]="['fas', 'female']"></fa-icon>
     </div>
-    <h4 class="row w-100 no-gutters label justify-content-center text-center position-absolute text-secondary">CANDIDATE<br />{{female/total | percent:'1.2'}}</h4>
-  </div>
+    <!-- <h4 class="row w-100 no-gutters label justify-content-center text-center position-absolute text-secondary">CANDIDATE<br />{{female/total | percent:'1.2'}}</h4>
+  --> </div>
 
   <div class="male position-relative">
-    <div class="back-image text-primary line-height-1">
+    <div class="back-image text-white line-height-1">
       <fa-icon [icon]="['fas', 'male']"></fa-icon>
     </div>
     <div class="front-image line-height-1" [style.height]="female/total * 100 + '%'">
       <fa-icon [icon]="['fas', 'male']"></fa-icon>
-    </div>
-    <h4 class="row w-100 no-gutters label justify-content-center text-center position-absolute text-secondary">{{1-female/total | percent:'1.2'}}</h4>
+    </div><!--
+    <h4 class="row w-100 no-gutters label justify-content-center text-center position-absolute text-secondary">{{1-female/total | percent:'1.2'}}</h4> -->
   </div>
 </div>
